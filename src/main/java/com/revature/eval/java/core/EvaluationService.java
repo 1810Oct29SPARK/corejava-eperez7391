@@ -1,6 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -129,7 +130,48 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
+		ArrayList<String> onePoint=new ArrayList<String>();
+		onePoint.add("a");
+		onePoint.add("e");
+		onePoint.add("i");
+		onePoint.add("o");
+		onePoint.add("u");
+		onePoint.add("l");
+		onePoint.add("n");
+		onePoint.add("r");
+		onePoint.add("s");
+		onePoint.add("t");
+
+		ArrayList<String> twoPoint=new ArrayList<String>();
+		twoPoint.add("d");
+		twoPoint.add("g");
+
+		ArrayList<String> threePoint=new ArrayList<String>();
+		twoPoint.add("b");
+		onePoint.add("c");
+		onePoint.add("m");
+		onePoint.add("p");
+
+		ArrayList<String> fourPoint=new ArrayList<String>();
+		twoPoint.add("v");
+		onePoint.add("h");
+		onePoint.add("v");
+		onePoint.add("w");
+		onePoint.add("y");
+
+		ArrayList<String> fivePoint=new ArrayList<String>();
+		twoPoint.add("k");
+
+		ArrayList<String> eightPoint=new ArrayList<String>();
+		twoPoint.add("j");
+		onePoint.add("x");
+
+		ArrayList<String> tenPoint=new ArrayList<String>();
+		twoPoint.add("q");
+		onePoint.add("z");
+		
+		
+		
 		return 0;
 	}
 
