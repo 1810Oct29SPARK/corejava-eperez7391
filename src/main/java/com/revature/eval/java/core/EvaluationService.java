@@ -3,6 +3,7 @@ package com.revature.eval.java.core;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -214,7 +215,7 @@ public class EvaluationService {
 		else if (ans.charAt(0) == '1') {
 			ans = ans.substring(1);
 		}
-		return ans;
+		return ans;	
 	}
 
 	/**
@@ -227,7 +228,10 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
+		Map<String, Integer> m = new HashMap<>();
+		for (int i=0; i<string.length(); i++) {
+			m.put(string, 1);
+		}
 		return null;
 	}
 
