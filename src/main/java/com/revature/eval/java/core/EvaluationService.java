@@ -206,8 +206,14 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		
-		return null;
+		String[] str = {"1","2","3","4","5","6","7","8","9"};
+		String ans = null;
+		for (String s : str) {
+			if(string.contains(s)) {
+				ans.concat(string);
+			}
+		}
+		return ans;
 	}
 
 	/**
