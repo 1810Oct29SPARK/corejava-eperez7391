@@ -32,7 +32,11 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		return null;
+		String acro = "";
+		for (int i=0; i<=phrase.length(); i++) {
+			
+		}
+		return acro;
 	}
 
 	/**
@@ -130,49 +134,44 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getScrabbleScore(String string) {
-		ArrayList<String> onePoint=new ArrayList<String>();
-		onePoint.add("a");
-		onePoint.add("e");
-		onePoint.add("i");
-		onePoint.add("o");
-		onePoint.add("u");
-		onePoint.add("l");
-		onePoint.add("n");
-		onePoint.add("r");
-		onePoint.add("s");
-		onePoint.add("t");
-
-		ArrayList<String> twoPoint=new ArrayList<String>();
-		twoPoint.add("d");
-		twoPoint.add("g");
-
-		ArrayList<String> threePoint=new ArrayList<String>();
-		twoPoint.add("b");
-		onePoint.add("c");
-		onePoint.add("m");
-		onePoint.add("p");
-
-		ArrayList<String> fourPoint=new ArrayList<String>();
-		twoPoint.add("v");
-		onePoint.add("h");
-		onePoint.add("v");
-		onePoint.add("w");
-		onePoint.add("y");
-
-		ArrayList<String> fivePoint=new ArrayList<String>();
-		twoPoint.add("k");
-
-		ArrayList<String> eightPoint=new ArrayList<String>();
-		twoPoint.add("j");
-		onePoint.add("x");
-
-		ArrayList<String> tenPoint=new ArrayList<String>();
-		twoPoint.add("q");
-		onePoint.add("z");
-		
-		
-		
-		return 0;
+		String s = string.toLowerCase();
+		int num = 0;
+		int v;
+		char c;
+		ArrayList<Character> arr = new ArrayList<Character>(5);
+		arr.add('a');
+		arr.add('b');
+		arr.add('c');
+		arr.add('d');
+		arr.add('e');
+		arr.add('f');
+		arr.add('g');
+		arr.add('h');
+		arr.add('i');
+		arr.add('j');
+		arr.add('k');
+		arr.add('l');
+		arr.add('m');
+		arr.add('n');
+		arr.add('o');
+		arr.add('p');
+		arr.add('q');
+		arr.add('r');
+		arr.add('s');
+		arr.add('t');
+		arr.add('u');
+		arr.add('v');
+		arr.add('w');
+		arr.add('x');
+		arr.add('y');
+		arr.add('z');
+		int[] val = {1,3,3,2,1,4,2,4,1,8,5,1,3,1,1,3,10,1,1,1,1,4,4,8,4,10};
+		for (int i=0; i<=s.length() - 1; i++) {
+			c = s.charAt(i);
+			v= arr.indexOf(c);
+			num = num + val[v];
+		}
+		return num;
 	}
 
 	/**
@@ -207,7 +206,7 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
+		
 		return null;
 	}
 
