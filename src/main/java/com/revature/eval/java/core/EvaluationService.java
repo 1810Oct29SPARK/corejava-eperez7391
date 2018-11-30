@@ -32,11 +32,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		String acro = "";
-		for (int i=0; i<=phrase.length(); i++) {
-			
-		}
-		return acro;
+		return null;
 	}
 
 	/**
@@ -206,12 +202,17 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		String[] str = {"1","2","3","4","5","6","7","8","9"};
-		String ans = null;
-		for (String s : str) {
-			if(string.contains(s)) {
-				ans.concat(string);
+		System.out.println(string);
+		String ans = string.replaceAll("[^0-9]", "");
+		System.out.println(ans);
+		if (ans.length() > 11) {
+			throw new IllegalArgumentException("greater than 11 numbers inputed");
 			}
+		else if (ans.length() < 10) {
+			throw new IllegalArgumentException("less than 10 numbers inputed");
+		}
+		else if (ans.charAt(0) == '1') {
+			ans = ans.substring(1);
 		}
 		return ans;
 	}
