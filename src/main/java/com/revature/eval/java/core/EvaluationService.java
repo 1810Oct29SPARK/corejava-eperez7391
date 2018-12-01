@@ -207,9 +207,7 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		System.out.println(string);
 		String ans = string.replaceAll("[^0-9]", "");
-		System.out.println(ans);
 		if (ans.length() > 11) {
 			throw new IllegalArgumentException("greater than 11 numbers inputed");
 			}
@@ -245,9 +243,6 @@ public class EvaluationService {
 				tmap.put(s[i], ++c);
 		}
 
-		for (Map.Entry m : tmap.entrySet())
-			System.out.println("Frequency of " + m.getKey() + " is " + m.getValue());
-		
 		return tmap;
 	}
 	/**
