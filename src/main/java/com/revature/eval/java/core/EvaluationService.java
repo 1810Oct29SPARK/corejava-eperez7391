@@ -33,7 +33,12 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String acronym(String phrase) {
-		return null;
+		String acro = "";
+		for (String n : phrase.split("[ -]")) {
+			acro += n.charAt(0);
+		}
+		String upperAcro = acro.toUpperCase();
+		return upperAcro;
 	}
 
 	/**
