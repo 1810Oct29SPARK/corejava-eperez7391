@@ -2,10 +2,9 @@ package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class EvaluationService {
 
@@ -233,13 +232,23 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		Map<String, Integer> m = new HashMap<>();
-		for (int i=0; i<string.length(); i++) {
-			m.put(string, 1);
-		}
-		return null;
-	}
+		TreeMap<String, Integer> tmap = new TreeMap<String, Integer>();
+		String[] s = string.split(" ");
+		for (int i = 0; i < s.length; i++) {
+			Integer c = tmap.get(s[i]);
 
+			if (tmap.get(s[i]) == null)
+				tmap.put(s[i], 1);
+
+			else
+				tmap.put(s[i], ++c);
+		}
+
+		for (Map.Entry m : tmap.entrySet())
+			System.out.println("Frequency of " + m.getKey() + " is " + m.getValue());
+		
+		return tmap;
+	}
 	/**
 	 * 7. Implement a binary search algorithm.
 	 * 
