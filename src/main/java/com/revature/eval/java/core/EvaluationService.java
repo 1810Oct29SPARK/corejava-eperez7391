@@ -233,7 +233,8 @@ public class EvaluationService {
 	 */
 	public Map<String, Integer> wordCount(String string) {
 		TreeMap<String, Integer> tmap = new TreeMap<String, Integer>();
-		String[] s = string.split(" ");
+		String str = string.replaceAll("\n", "").replaceAll(",", " ");
+		String[] s = str.split(" ");
 		for (int i = 0; i < s.length; i++) {
 			Integer c = tmap.get(s[i]);
 
