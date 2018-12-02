@@ -2,6 +2,7 @@ package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -17,7 +18,7 @@ public class EvaluationService {
 	 */
 	public String reverse(String string) {
 		char[] reversed = new char[string.length()];
-		for (int i = reversed.length - 1, j=0; i >= 0; i--, j++) {
+		for (int i = reversed.length - 1, j = 0; i >= 0; i--, j++) {
 			reversed[j] = string.charAt(i);
 		}
 		return new String(reversed);
@@ -90,29 +91,27 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			if(sideOne == sideTwo && sideTwo== sideThree) {
+			if (sideOne == sideTwo && sideTwo == sideThree) {
 				return true;
 			}
-			
+
 			else {
 				return false;
 			}
 		}
 
 		public boolean isIsosceles() {
-			if(sideOne == sideTwo || sideTwo == sideThree || sideOne == sideThree) {
+			if (sideOne == sideTwo || sideTwo == sideThree || sideOne == sideThree) {
 				return true;
-			}
-			else {
+			} else {
 				return false;
 			}
 		}
 
 		public boolean isScalene() {
-			if(sideOne!= sideTwo && sideOne!=sideThree && sideTwo!=sideThree) {
+			if (sideOne != sideTwo && sideOne != sideThree && sideTwo != sideThree) {
 				return true;
-			}
-			else {
+			} else {
 				return false;
 			}
 		}
@@ -166,10 +165,10 @@ public class EvaluationService {
 		arr.add('x');
 		arr.add('y');
 		arr.add('z');
-		int[] val = {1,3,3,2,1,4,2,4,1,8,5,1,3,1,1,3,10,1,1,1,1,4,4,8,4,10};
-		for (int i=0; i<=s.length() - 1; i++) {
+		int[] val = { 1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10 };
+		for (int i = 0; i <= s.length() - 1; i++) {
 			c = s.charAt(i);
-			v= arr.indexOf(c);
+			v = arr.indexOf(c);
 			num = num + val[v];
 		}
 		return num;
@@ -210,14 +209,12 @@ public class EvaluationService {
 		String ans = string.replaceAll("[^0-9]", "");
 		if (ans.length() > 11) {
 			throw new IllegalArgumentException("greater than 11 numbers inputed");
-			}
-		else if (ans.length() < 10) {
+		} else if (ans.length() < 10) {
 			throw new IllegalArgumentException("less than 10 numbers inputed");
-		}
-		else if (ans.charAt(0) == '1') {
+		} else if (ans.charAt(0) == '1') {
 			ans = ans.substring(1);
 		}
-		return ans;	
+		return ans;
 	}
 
 	/**
@@ -245,6 +242,7 @@ public class EvaluationService {
 
 		return tmap;
 	}
+
 	/**
 	 * 7. Implement a binary search algorithm.
 	 * 
@@ -284,8 +282,10 @@ public class EvaluationService {
 		private List<T> sortedList;
 
 		public int indexOf(T t) {
-			// TODO Write an implementation for this method declaration
-			return 0;
+			List<T> list = this.getSortedList();
+			ArrayList<T> arraylist = new ArrayList<T>(list);
+			int index = Collections.binarySearch(arraylist, t, null);
+			return index;
 		}
 
 		public BinarySearch(List<T> sortedList) {
@@ -321,8 +321,48 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String toPigLatin(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		String end = "ay";
+		String user = string;
+		String ans = "";
+		String[] s = user.split(" ");
+		for (int i = 0; i < s.length; i++) {
+			if (s[i].startsWith("a") || s[i].startsWith("e") || s[i].startsWith("i") || s[i].startsWith("o")
+					|| s[i].startsWith("u")) {
+				ans = ans.concat(s[i].concat(end));
+				if (s.length >= 2) {
+					ans = ans.concat(" ");
+				}
+			} else {
+				int[] n = new int[5];
+				int a = s[i].indexOf("a");
+				int e = s[i].indexOf("e");
+				int eye = s[i].indexOf("i");
+				int o = s[i].indexOf("o");
+				int u = s[i].indexOf("u");
+				n[0] = a;
+				n[1] = e;
+				n[2] = eye;
+				n[3] = o;
+				n[4] = u;
+				for (int t = 0; t < 5; t++) {
+					if (n[t] < 0) {
+						n[t] = 100;
+					}
+				}
+				int min = n[0];
+				for (int in = 0; in < n.length; in++) {
+					if (min >= n[in]) {
+						min = n[in];
+					}
+				}
+
+				ans = ans.concat(s[i].substring(min).concat(s[i].substring(0, min)).concat(end));
+				if (s.length >= 2) {
+					ans = ans.concat(" ");
+				}
+			}
+		}
+		return ans;
 	}
 
 	/**
@@ -341,8 +381,36 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		boolean ans = false;
+		int val = input;
+		int power = 0;
+		int num = 0;
+		int sum = 0;
+		while (val != 0) {
+			power++;
+			val /= 10;
+		}
+
+		val = input;
+
+		while (val != 0) {
+			num = val % 10;
+			sum += pow(num, power);
+			val /= 10;
+		}
+		if (sum == input) {
+			ans = true;
+		}
+		return ans;
+	}
+
+	static int pow(int n, int p) {
+		int c;
+		int r = 1;
+		for (c = 1; c <= p; c++) {
+			r = r * n;
+		}
+		return r;
 	}
 
 	/**
@@ -356,8 +424,16 @@ public class EvaluationService {
 	 * @return
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		List<Long> ans = new ArrayList<Long>();
+		long h = l/2;
+		for (long i = 2; i<=l; ++i) {
+			if (l%i == 0) {
+				l /= i;
+				ans.add(i);
+				i = 1;
+			}
+		}
+		return ans;
 	}
 
 	/**
