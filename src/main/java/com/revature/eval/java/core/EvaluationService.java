@@ -237,14 +237,13 @@ public class EvaluationService {
 		String[] s = str.split(" ");
 		for (int i = 0; i < s.length; i++) {
 			Integer c = tmap.get(s[i]);
-
-			if (tmap.get(s[i]) == null)
+			if (tmap.get(s[i]) == null) {
 				tmap.put(s[i], 1);
-
-			else
+			}
+			else {
 				tmap.put(s[i], ++c);
+			}
 		}
-
 		return tmap;
 	}
 
