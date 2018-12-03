@@ -617,8 +617,20 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isPangram(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		String abc = "abcdefghijklmnopqrstuvwxyz";
+		String user = string.toLowerCase().replaceAll(" ", "");
+		int num = user.length();
+		if (user == "") {
+			return false;
+		}
+		for (int i=0; i<abc.length(); i++) {
+			if (user.contains(abc.substring(i, i+1))) {
+			}
+			else {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -630,7 +642,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Temporal getGigasecondDate(Temporal given) {
-		// TODO Write an implementation for this method declaration
+		
 		return null;
 	}
 
