@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 public class EvaluationService {
 
@@ -571,7 +572,6 @@ public class EvaluationService {
 					results += abc.charAt(indexOf);
 				}
 			}
-			System.out.println(results);
 			return results;
 		}
 	}
@@ -648,18 +648,23 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getSumOfMultiples(int i, int[] set) {
-		int[] vals = null;
+		List<Integer> vals = new ArrayList<Integer>();
+		List<Integer> newVals = new ArrayList<Integer>();
+		int[] arr = set;
+		int num = arr.length;
 		int ans = 0;
 		for (int j=0; j<i; j++) {
-			if (j%set[0] == 0 || j%set[1] == 0 || j%set[2] == 0) {
-				int n = 0;
-				vals[n] = j;
+			for (int k=0; k<num; k++) {
+				if (j%arr[k] == 0) {
+					vals.add(j);
+				}
 			}
 		}
-		for (int j=0; j<vals.length; j++) {
-			ans += vals[j];
+		newVals = vals.stream().distinct().collect(Collectors.toList());
+		for (int n=0; n<newVals.size(); n++) {
+			ans += newVals.get(n);
 		}
-		return 0;
+		return ans;
 	}
 
 	/**
@@ -699,7 +704,6 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isLuhnValid(String string) {
-		String in = string;
 		return false;
 	}
 
@@ -733,13 +737,10 @@ public class EvaluationService {
 	public int solveWordProblem(String string) {
 		String ques = string.substring(8);
 		String rep0 = ques.replaceAll("by ", "");
-		System.out.println(rep0);
 		String rep = rep0.replaceAll("[^0-9 a-z -]", "");
 		String[] sp = rep.split(" ");
 		String op = sp[1];
 		int ans = 0;
-		System.out.println(rep);
-		System.out.println(Arrays.toString(sp));
 		switch (op) {
 		case "plus":
 			ans = Integer.parseInt(sp[0]) + Integer.parseInt(sp[2]);
@@ -757,7 +758,6 @@ public class EvaluationService {
 			ans = Integer.parseInt(sp[0]) / Integer.parseInt(sp[2]);
 			break;
 		}
-		System.out.println(op);
 		return ans;
 	}
 
