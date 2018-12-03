@@ -239,8 +239,7 @@ public class EvaluationService {
 			Integer c = tmap.get(s[i]);
 			if (tmap.get(s[i]) == null) {
 				tmap.put(s[i], 1);
-			}
-			else {
+			} else {
 				tmap.put(s[i], ++c);
 			}
 		}
@@ -332,7 +331,7 @@ public class EvaluationService {
 		for (int i = 0; i < s.length; i++) {
 			if (s[i].startsWith("a") || s[i].startsWith("e") || s[i].startsWith("i") || s[i].startsWith("o")
 					|| s[i].startsWith("u")) {
-				ans = ans.concat(s[i].concat(end+" "));
+				ans = ans.concat(s[i].concat(end + " "));
 			} else {
 				int[] n = new int[5];
 				int a = s[i].indexOf("a");
@@ -357,7 +356,7 @@ public class EvaluationService {
 					}
 				}
 
-				ans = ans.concat(s[i].substring(min).concat(s[i].substring(0, min)).concat(end+" "));
+				ans = ans.concat(s[i].substring(min).concat(s[i].substring(0, min)).concat(end + " "));
 			}
 		}
 		return ans.trim();
@@ -423,9 +422,9 @@ public class EvaluationService {
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
 		List<Long> ans = new ArrayList<Long>();
-		long h = l/2;
-		for (long i = 2; i<=l; ++i) {
-			if (l%i == 0) {
+		long h = l / 2;
+		for (long i = 2; i <= l; ++i) {
+			if (l % i == 0) {
 				l /= i;
 				ans.add(i);
 				i = 1;
@@ -469,14 +468,37 @@ public class EvaluationService {
 		}
 
 		public String rotate(String string) {
+			String user = string;
+			String init = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
+			String abc = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
+			String def = "";
 			String ans = "";
-			for (int i=0; i<string.length(); i++) {
-				
-				
+			int val = user.length();
+			for (int i = 0; i < key; ++i) {
+				char x = abc.charAt(0);
+				char y = abc.charAt(1);
+				def = abc.substring(2) + x + y;
+				abc = def;
 			}
-			return ans;
-		}
 
+			if (val < 2) {
+				int indexOf = init.indexOf(string.charAt(0));
+				ans += abc.charAt(indexOf);
+				return ans;
+
+			} else {
+				for (int i = 0; i < val; ++i) {
+					if (Character.isLetter(string.charAt(i))) {
+						int indexOf = init.indexOf(string.charAt(i));
+						ans += abc.charAt(indexOf);
+					}
+					else {
+						ans += string.charAt(i);
+					}
+				}
+				return ans;
+			}
+		}
 	}
 
 	/**
@@ -625,10 +647,9 @@ public class EvaluationService {
 		if (user == "") {
 			return false;
 		}
-		for (int i=0; i<abc.length(); i++) {
-			if (user.contains(abc.substring(i, i+1))) {
-			}
-			else {
+		for (int i = 0; i < abc.length(); i++) {
+			if (user.contains(abc.substring(i, i + 1))) {
+			} else {
 				return false;
 			}
 		}
@@ -672,15 +693,15 @@ public class EvaluationService {
 		int[] arr = set;
 		int num = arr.length;
 		int ans = 0;
-		for (int j=0; j<i; j++) {
-			for (int k=0; k<num; k++) {
-				if (j%arr[k] == 0) {
+		for (int j = 0; j < i; j++) {
+			for (int k = 0; k < num; k++) {
+				if (j % arr[k] == 0) {
 					vals.add(j);
 				}
 			}
 		}
 		newVals = vals.stream().distinct().collect(Collectors.toList());
-		for (int n=0; n<newVals.size(); n++) {
+		for (int n = 0; n < newVals.size(); n++) {
 			ans += newVals.get(n);
 		}
 		return ans;
@@ -764,15 +785,15 @@ public class EvaluationService {
 		case "plus":
 			ans = Integer.parseInt(sp[0]) + Integer.parseInt(sp[2]);
 			break;
-			
+
 		case "minus":
 			ans = Integer.parseInt(sp[0]) - Integer.parseInt(sp[2]);
 			break;
-			
+
 		case "multiplied":
 			ans = Integer.parseInt(sp[0]) * Integer.parseInt(sp[2]);
 			break;
-			
+
 		case "divided":
 			ans = Integer.parseInt(sp[0]) / Integer.parseInt(sp[2]);
 			break;
