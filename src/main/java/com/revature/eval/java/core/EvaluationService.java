@@ -2,6 +2,7 @@ package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -328,10 +329,7 @@ public class EvaluationService {
 		for (int i = 0; i < s.length; i++) {
 			if (s[i].startsWith("a") || s[i].startsWith("e") || s[i].startsWith("i") || s[i].startsWith("o")
 					|| s[i].startsWith("u")) {
-				ans = ans.concat(s[i].concat(end));
-				if (s.length >= 2) {
-					ans = ans.concat(" ");
-				}
+				ans = ans.concat(s[i].concat(end+" "));
 			} else {
 				int[] n = new int[5];
 				int a = s[i].indexOf("a");
@@ -356,13 +354,10 @@ public class EvaluationService {
 					}
 				}
 
-				ans = ans.concat(s[i].substring(min).concat(s[i].substring(0, min)).concat(end));
-				if (s.length >= 2) {
-					ans = ans.concat(" ");
-				}
+				ans = ans.concat(s[i].substring(min).concat(s[i].substring(0, min)).concat(end+" "));
 			}
 		}
-		return ans;
+		return ans.trim();
 	}
 
 	/**
@@ -471,8 +466,12 @@ public class EvaluationService {
 		}
 
 		public String rotate(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			String ans = "";
+			for (int i=0; i<string.length(); i++) {
+				
+				
+			}
+			return ans;
 		}
 
 	}
@@ -527,8 +526,30 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String encode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			String abc = "abcdefghijklmnopqrstuvwxyz";
+			String cba = "zyxwvutsrqponmlkjihgfedcba";
+			String results = "";
+			int count = 0;
+			string = string.toLowerCase();
+			string = string.replaceAll("[ ,.]", "");
+			for (int i = 0; i < string.length(); ++i) {
+				if (Character.isDigit(string.charAt(i))) {
+					results += Character.getNumericValue(string.charAt(i));
+				} else {
+					int indexOf = abc.indexOf(string.charAt(i));
+					results += cba.charAt(indexOf);
+				}
+			}
+			StringBuilder finalresults = new StringBuilder();
+			finalresults.append(results);
+			for (int i = 0; i < finalresults.length(); ++i) {
+				if (count == 5) {
+					finalresults.insert(i, ' ');
+					count = -1;
+				}
+				count++;
+			}
+			return finalresults.toString();
 		}
 
 		/**
@@ -538,8 +559,20 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String decode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			string = string.replaceAll(" ", "");
+			String abc = "abcdefghijklmnopqrstuvwxyz";
+			String cba = "zyxwvutsrqponmlkjihgfedcba";
+			String results = "";
+			for (int i = 0; i < string.length(); ++i) {
+				if (Character.isDigit(string.charAt(i))) {
+					results += Character.getNumericValue(string.charAt(i));
+				} else {
+					int indexOf = cba.indexOf(string.charAt(i));
+					results += abc.charAt(indexOf);
+				}
+			}
+			System.out.println(results);
+			return results;
 		}
 	}
 
@@ -615,7 +648,17 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getSumOfMultiples(int i, int[] set) {
-		// TODO Write an implementation for this method declaration
+		int[] vals = null;
+		int ans = 0;
+		for (int j=0; j<i; j++) {
+			if (j%set[0] == 0 || j%set[1] == 0 || j%set[2] == 0) {
+				int n = 0;
+				vals[n] = j;
+			}
+		}
+		for (int j=0; j<vals.length; j++) {
+			ans += vals[j];
+		}
 		return 0;
 	}
 
@@ -656,7 +699,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isLuhnValid(String string) {
-		// TODO Write an implementation for this method declaration
+		String in = string;
 		return false;
 	}
 
@@ -688,8 +731,34 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int solveWordProblem(String string) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		String ques = string.substring(8);
+		String rep0 = ques.replaceAll("by ", "");
+		System.out.println(rep0);
+		String rep = rep0.replaceAll("[^0-9 a-z -]", "");
+		String[] sp = rep.split(" ");
+		String op = sp[1];
+		int ans = 0;
+		System.out.println(rep);
+		System.out.println(Arrays.toString(sp));
+		switch (op) {
+		case "plus":
+			ans = Integer.parseInt(sp[0]) + Integer.parseInt(sp[2]);
+			break;
+			
+		case "minus":
+			ans = Integer.parseInt(sp[0]) - Integer.parseInt(sp[2]);
+			break;
+			
+		case "multiplied":
+			ans = Integer.parseInt(sp[0]) * Integer.parseInt(sp[2]);
+			break;
+			
+		case "divided":
+			ans = Integer.parseInt(sp[0]) / Integer.parseInt(sp[2]);
+			break;
+		}
+		System.out.println(op);
+		return ans;
 	}
 
 }
